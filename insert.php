@@ -1,5 +1,4 @@
 <?php
-$id = $_POST['id'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $Email = $_POST['Email'];
@@ -9,21 +8,18 @@ $nationality = $_POST['nationality'];
 $userName = $_POST['username'];
 $password = $_POST['password'];
 $confirm_password = $_POST['confirm_password'];
-$role=$_POST['role'];
 $temporary_filename = $_FILES['image_dir']['tmp_name'];
 $final_filename = $_FILES['image_dir']['name'];
-// $temporary_filename = $_FILES['image_dir']['tmp_name'];
-
-// $final_filename = $_FILES['image_dir']['name'];
+$role = $_POST['role'];
 
 // $dir = 'public/';
 // $file_target = $dir . basename($_FILES["image_dir"]["name"]);
 
-// if(move_uploaded_file($_FILES["image_dir"]["tmp_name"], $file_target)){
-//     echo "Successfully saved the file";
-// } else {
-//     die("Failed to save the file");
-// }
+//if (move_uploaded_file($temporary_filename,'uploads/'.$final_filename)) {
+    //echo "Successfully saved the file";
+//} else {
+  //  die("Failed to save the file");
+//}
 
 // $filename = $file_target;
 
@@ -39,9 +35,9 @@ if (($firstName == "") || ($lastName == "") || ($Email == "") || ($password !== 
 
         echo "Connection not successfull" . mysqli_connect_error();
     } else {
-        $insertQuery = "UPDATE users SET firstName = '$firstName',image_dir='$final_filename', lastName = '$lastName'  , telephone= '$telephone' , username='$username' ,gender='$gender', nationality='$nationality', Email='$Email', username='$username',Role='$role' WHERE id = '$id'";
+        $insertQuery = "INSERT INTO users ( firstName , lastName , telephone , username ,gender, nationality, Email,password,confirm_password,image_dir,Role) VALUES('$firstName','$lastName','$telephone','$userName','$gender','$nationality','$Email','$password','$confirm_password','$final_filename','$role' )";
         $insert =  mysqli_query($connection, $insertQuery) or die("Error occured" . mysqli_error($connection));
-        if ($insert) {
+        if (!$insert) {
             header('location: display.php');
         }
         // echo "Connected";
@@ -50,5 +46,26 @@ if (($firstName == "") || ($lastName == "") || ($Email == "") || ($password !== 
 }
 
 
-?>
-<a href="display.php" title="Display Data">Display</a>
+    ?>
+    <html>
+        <style>
+            button{
+                padding: 20px 90px;
+                background-color: rgb(95, 127, 179);
+                color: white;
+                border-radius: 5px;
+                border: none;
+                position: absolute;
+                top: 30%;
+                left: 40%;
+
+            }
+            a{
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            }
+        </style>
+       <button> <a href="display.php">View Details</a></button>
+    </html>

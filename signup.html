@@ -6,16 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="./signup.css">
 </head>
 
 <body>
-    <div class="form">
-        <h2 class="heading-2">Create account</h2>
-        <form action="process.php" method="post">
+    <div class="form" style="display: inline-block;justify-content: space-between;">
+        <h2 class="heading-2" style="margin-top: 10px;">Create account</h2>
+        <form action="./insert.php" method="post" enctype="multipart/form-data" style="padding: 20px;">
             <div class="labels">
+                <input type="file" id="image" name="image_dir"  style="position: absolute;top: 80px;" >
+                <br>
+                <br>
                 <label for="">First Name</label>
-                <input placeholder="Enter First Name" type="text" id="firstName" name="firstName">
+                <input placeholder="Enter First Name" type="text" id="firstName" name="firstName" style="margin-left: 50px;">
             </div>
             <div class="labels">
                 <label for="">Last Name</label>
@@ -69,7 +72,11 @@
                 <label for="confpass">Confirm Password</label>
                 <input placeholder="Confirm password" type="password" name="confirm_password">
             </div>
-            <input value="register" type="submit" name="submit">
+            <div class="labels">
+                <label for="confpass">Role</label>
+                <input placeholder="Enter the role" type="text" name="role">
+            </div>
+            <input value="register" type="submit" name="submit" style="padding: 10px 80px; margin-left: 80px;margin-top: 30px;">
         </form>
 
     </div>
